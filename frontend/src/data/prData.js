@@ -1,27 +1,35 @@
 const prData = [
   {
     id: 1,
-    title: "Remove auth validation",
+    title: "Remove auth middleware",
+    repository: "payment-service",
+    author: "Naman",
+    filesChanged: 12,
     risk: "Critical",
-    severity: "High",
+    confidence: 96,
+    riskScore: 91,
   },
+
   {
     id: 2,
-    title: "Optimize DB query",
+    title: "Optimize database queries",
+    repository: "analytics-engine",
+    author: "Khushi",
+    filesChanged: 7,
     risk: "Medium",
-    severity: "Medium",
+    confidence: 82,
+    riskScore: 64,
   },
+
   {
     id: 3,
     title: "Refactor login service",
+    repository: "auth-service",
+    author: "Rahul",
+    filesChanged: 4,
     risk: "Low",
-    severity: "Low",
-  },
-  {
-    id: 4,
-    title: "Added payment API",
-    risk: "Critical",
-    severity: "High",
+    confidence: 74,
+    riskScore: 22,
   },
 ]
 
