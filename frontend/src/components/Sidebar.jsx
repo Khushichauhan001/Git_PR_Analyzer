@@ -4,6 +4,7 @@ import {
   GitPullRequest,
   BarChart3,
 } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const Sidebar = () => {
   return (
@@ -13,25 +14,38 @@ const Sidebar = () => {
       </h1>
 
       <div className="space-y-4">
-        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer">
-          <LayoutDashboard size={20} />
-          <span>Dashboard</span>
-        </div>
+        <Link
+           to="/"
+           className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer"
+         >
+           <LayoutDashboard size={20} />
+           <span>Dashboard</span>
+         </Link>
 
-        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer">
-          <GitPullRequest size={20} />
-          <span>Pull Requests</span>
-        </div>
+         <Link
+           to="/pull-requests"
+           className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer"
+         >
+           <GitPullRequest size={20} />
+           <span>Pull Requests</span>
+         </Link>
 
-        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer">
-          <ShieldAlert size={20} />
-          <span>Vulnerabilities</span>
-        </div>
+         <Link
+             to="/vulnerabilities"
+             className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer"
+           >
+             <ShieldAlert size={20} />
+             <span>Vulnerabilities</span>
+           </Link>
 
-        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer">
-          <BarChart3 size={20} />
-          <span>Analytics</span>
-        </div>
+          <Link
+            to="/analytics"
+            className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#1F2937] cursor-pointer"
+          >
+            <BarChart3 size={20} />
+            <span>Analytics</span>
+          </Link>
+          
       </div>
     </div>
   )
