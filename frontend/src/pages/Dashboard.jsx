@@ -3,6 +3,7 @@ import StatsCard from "../components/StatsCard"
 import PRTable from "../components/PRTable"
 import RiskPieChart from "../charts/RiskPieChart"
 import WeeklyActivityChart from "../charts/WeeklyActivityChart"
+import AISuggestions from "../components/AISuggestions"
 
 const Dashboard = () => {
   return (
@@ -46,6 +47,8 @@ const Dashboard = () => {
           <RiskPieChart />
           <WeeklyActivityChart />
        </div>
+
+       <AISuggestions />
           
           
       </div>
