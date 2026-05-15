@@ -1,6 +1,8 @@
 import Sidebar from "../components/Sidebar"
 import StatsCard from "../components/StatsCard"
 import PRTable from "../components/PRTable"
+import RiskPieChart from "../charts/RiskPieChart"
+import WeeklyActivityChart from "../charts/WeeklyActivityChart"
 
 const Dashboard = () => {
   return (
@@ -39,6 +41,12 @@ const Dashboard = () => {
           />
         </div>
       <PRTable />
+
+      <div className="grid grid-cols-2 gap-6 mt-10">
+          <RiskPieChart />
+          <WeeklyActivityChart />
+       </div>
+          
           
       </div>
     </div>
