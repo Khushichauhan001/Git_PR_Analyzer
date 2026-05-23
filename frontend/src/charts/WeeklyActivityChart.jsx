@@ -17,7 +17,7 @@ const WeeklyActivityChart = () => {
         Weekly PR Activity
       </h2>
 
-      <ResponsiveContainer width="100%" height="85%">
+      <ResponsiveContainer width="100%" height={300}>
         <LineChart data={weeklyData}>
           <CartesianGrid strokeDasharray="3 3" />
 

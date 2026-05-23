@@ -6,7 +6,8 @@ import {
   ResponsiveContainer,
 } from "recharts"
 
-import { riskData } from "../data/chartData"
+// import { riskData } from "../data/chartData"
+import { pieData } from "../data/chartData"
 
 const COLORS = [
   "#ef4444",
@@ -21,15 +22,15 @@ const RiskPieChart = () => {
         Risk Distribution
       </h2>
 
-      <ResponsiveContainer width="100%" height="85%">
+      <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
-            data={riskData}
+            data={pieData}
             dataKey="value"
             outerRadius={100}
             label
           >
-            {riskData.map((entry, index) => (
+            {pieData.map((entry, index) => (
               <Cell
                 key={index}
                 fill={COLORS[index % COLORS.length]}
