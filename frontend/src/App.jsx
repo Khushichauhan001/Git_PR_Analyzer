@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom"
+import PRDetails from "./pages/PRDetails"
 
 import MainLayout from "./layouts/MainLayout"
 
@@ -35,6 +36,11 @@ function App() {
             path="/analytics"
             element={<Analytics />}
           />
+
+          <Route
+          path="/pull-requests/:id"
+          element={<PRDetails />}
+        />
         </Routes>
       </MainLayout>
     </BrowserRouter>

@@ -1,4 +1,5 @@
 import Sidebar from "../components/Sidebar"
+import Navbar from "../components/Navbar"
 
 const MainLayout = ({ children }) => {
   return (
@@ -6,12 +7,22 @@ const MainLayout = ({ children }) => {
 
       <div className="flex">
 
-        {/* Sidebar */}
         <Sidebar />
 
-        {/* Main Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-x-hidden">
+        <main
+          className="
+            flex-1
+            p-4 sm:p-6 lg:p-8
+            overflow-x-hidden
+          "
+        >
+
+          {/* Navbar */}
+          <Navbar />
+
+          {/* Page Content */}
           {children}
+
         </main>
 
       </div>

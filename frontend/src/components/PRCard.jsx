@@ -1,64 +1,92 @@
-import SeverityBadge from "./SeverityBadge"
+import {
+  ShieldAlert,
+  GitPullRequest,
+  Activity,
+  CheckCircle2,
+} from "lucide-react"
 
 const PRCard = ({ pr }) => {
   return (
     <div
       className="
-        bg-[#111827]/80
+        bg-[#111827]
         border border-gray-800
-        rounded-3xl
+
+        rounded-2xl
+
         p-4 sm:p-5
-        hover:border-blue-500
-        hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]
+
+        hover:border-blue-500/40
+        hover:shadow-[0_0_25px_rgba(59,130,246,0.08)]
+
         transition-all duration-300
-        backdrop-blur-lg
-        overflow-hidden
       "
     >
 
-      {/* Top */}
+      {/* TOP */}
       <div
         className="
-          flex flex-col
-          lg:flex-row
-          lg:justify-between
-          lg:items-start
+          flex
+          flex-col
+          xl:flex-row
+          xl:items-start
+          xl:justify-between
+
           gap-4
           mb-4
         "
       >
 
-        <div className="min-w-0">
+        {/* LEFT */}
+        <div>
 
-          {/* Title */}
-          <div className="flex flex-wrap items-center gap-3 mb-2">
+          {/* PR ID + TITLE */}
+          <div className="flex items-center gap-3 flex-wrap">
 
-            <span className="text-blue-400 font-semibold text-sm">
+            <span className="text-blue-400 font-medium text-sm">
               #{pr.id}
             </span>
 
-            <h2 className="text-lg sm:text-xl font-bold break-words">
+            <h2
+              className="
+                text-xl
+                sm:text-2xl
+                font-bold
+              "
+            >
               {pr.title}
             </h2>
 
           </div>
 
-          {/* Repo */}
+          {/* Repo + Branch */}
           <div
             className="
-              flex flex-wrap
+              flex
               items-center
               gap-3
-              text-gray-400
-              text-sm
+
+              mt-3
+              flex-wrap
             "
           >
 
-            <span className="bg-[#1F2937] px-3 py-1 rounded-full">
+            <span
+              className="
+                px-3 py-1
+
+                rounded-full
+
+                bg-[#1F2937]
+
+                text-gray-300
+                text-sm
+              "
+            >
               {pr.repository}
             </span>
 
-            <span className="break-words">
+            <span className="text-gray-500 text-sm">
               {pr.branch}
             </span>
 
@@ -66,17 +94,45 @@ const PRCard = ({ pr }) => {
 
         </div>
 
-        <SeverityBadge risk={pr.risk} />
+        {/* SEVERITY */}
+        <div>
+
+          <span
+            className={`
+              px-3 py-1
+
+              rounded-full
+
+              text-sm
+              font-medium
+
+              border
+
+              ${
+                pr.severity === "Critical"
+                  ? "border-red-500 text-red-400 bg-red-500/10"
+
+                  : pr.severity === "Medium"
+                  ? "border-yellow-500 text-yellow-400 bg-yellow-500/10"
+
+                  : "border-green-500 text-green-400 bg-green-500/10"
+              }
+            `}
+          >
+            {pr.severity}
+          </span>
+
+        </div>
 
       </div>
 
-      {/* Info Grid */}
+      {/* INFO */}
       <div
         className="
           grid
-          grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-3
+          grid-cols-2
+          md:grid-cols-4
+
           gap-4
           mb-4
         "
@@ -85,7 +141,7 @@ const PRCard = ({ pr }) => {
         {/* Author */}
         <div>
 
-          <p className="text-gray-400 text-sm mb-1">
+          <p className="text-gray-500 text-sm mb-2">
             Author
           </p>
 
@@ -93,19 +149,21 @@ const PRCard = ({ pr }) => {
 
             <div
               className="
-                w-9 h-9
+                w-10 h-10
+
                 rounded-full
+
                 bg-blue-500
+
                 flex items-center justify-center
-                font-bold
-                text-sm
-                shrink-0
+
+                font-semibold
               "
             >
-              {pr.author[0]}
+              {pr.author.charAt(0)}
             </div>
 
-            <h3 className="text-base font-semibold break-words">
+            <h3 className="font-semibold">
               {pr.author}
             </h3>
 
@@ -116,11 +174,11 @@ const PRCard = ({ pr }) => {
         {/* Files */}
         <div>
 
-          <p className="text-gray-400 text-sm mb-1">
+          <p className="text-gray-500 text-sm mb-2">
             Files Changed
           </p>
 
-          <h3 className="text-xl font-bold">
+          <h3 className="text-3xl font-bold">
             {pr.filesChanged}
           </h3>
 
@@ -129,51 +187,101 @@ const PRCard = ({ pr }) => {
         {/* Confidence */}
         <div>
 
-          <p className="text-gray-400 text-sm mb-1">
+          <p className="text-gray-500 text-sm mb-2">
             AI Confidence
           </p>
 
-          <h3 className="text-xl font-bold text-blue-400">
-            {pr.confidence}%
+          <h3
+            className="
+              text-3xl
+              font-bold
+              text-blue-400
+            "
+          >
+            {pr.aiConfidence}%
+          </h3>
+
+        </div>
+
+        {/* Risk */}
+        <div>
+
+          <p className="text-gray-500 text-sm mb-2">
+            Risk Score
+          </p>
+
+          <h3
+            className={`
+              text-3xl
+              font-bold
+
+              ${
+                pr.riskScore >= 80
+                  ? "text-red-400"
+
+                  : pr.riskScore >= 50
+                  ? "text-yellow-400"
+
+                  : "text-green-400"
+              }
+            `}
+          >
+            {pr.riskScore}%
           </h3>
 
         </div>
 
       </div>
 
-      {/* Risk Score */}
+      {/* RISK BAR */}
       <div className="mb-4">
 
-        <div className="flex justify-between mb-2">
+        <div
+          className="
+            flex
+            justify-between
 
-          <span className="text-gray-400 text-sm">
-            Risk Score
-          </span>
+            mb-2
+          "
+        >
 
-          <span className="font-semibold text-sm">
+          <p className="text-sm text-gray-400">
+            AI Risk Analysis
+          </p>
+
+          <p className="text-sm font-medium">
             {pr.riskScore}%
-          </span>
+          </p>
 
         </div>
 
         <div
           className="
             w-full
-            h-3
-            bg-gray-800
+            h-2.5
+
+            bg-[#1F2937]
+
             rounded-full
             overflow-hidden
           "
         >
 
           <div
-            className="
+            className={`
               h-full
-              bg-gradient-to-r
-              from-red-500
-              to-pink-500
               rounded-full
-            "
+
+              ${
+                pr.riskScore >= 80
+                  ? "bg-gradient-to-r from-red-500 to-pink-500"
+
+                  : pr.riskScore >= 50
+                  ? "bg-gradient-to-r from-yellow-500 to-orange-400"
+
+                  : "bg-gradient-to-r from-green-500 to-emerald-400"
+              }
+            `}
             style={{
               width: `${pr.riskScore}%`,
             }}
@@ -183,74 +291,88 @@ const PRCard = ({ pr }) => {
 
       </div>
 
-      {/* Vulnerabilities */}
-      <div className="flex flex-wrap gap-2 mb-4">
+      {/* TAGS */}
+      <div
+        className="
+          flex
+          flex-wrap
+          gap-2
 
-        {pr.vulnerabilities.map((item, index) => (
+          mb-4
+        "
+      >
+
+        {pr.tags.map((tag, index) => (
+
           <span
             key={index}
             className="
-              bg-red-500/10
-              text-red-400
-              border border-red-500/20
-              px-3 py-1
+              px-2 py-1
+
               rounded-full
+
+              bg-red-500/10
+              border border-red-500/20
+
+              text-red-300
               text-xs
-              break-words
             "
           >
-            {item}
+            {tag}
           </span>
+
         ))}
 
       </div>
 
-      {/* Diff Preview */}
+      {/* CODE PREVIEW */}
       <div
         className="
-          bg-black/40
+          bg-[#0B0F19]
+          border border-gray-900
+
           rounded-2xl
+
           p-3
           mb-4
+
           overflow-x-auto
         "
       >
 
-        <p className="text-gray-400 text-xs mb-2">
+        <p className="text-gray-500 text-sm mb-3">
           Code Diff Preview
         </p>
 
         <pre
           className="
-            text-xs
+            text-sm
             text-green-400
+
             whitespace-pre-wrap
-            break-words
           "
         >
-          {pr.diff}
+{pr.codeSnippet}
         </pre>
 
       </div>
 
-      {/* Buttons */}
-      <div
-        className="
-          flex flex-col
-          sm:flex-row
-          gap-3
-        "
-      >
+      {/* ACTIONS */}
+      <div className="flex items-center gap-3 flex-wrap">
 
         <button
           className="
+            px-4 py-2
+
+            rounded-xl
+
             bg-blue-600
             hover:bg-blue-700
-            px-4 py-2
-            rounded-xl
+
             text-sm
+            font-medium
+
             transition-all
-            w-full sm:w-auto
           "
         >
           View Analysis
@@ -258,13 +380,16 @@ const PRCard = ({ pr }) => {
 
         <button
           className="
+            px-4 py-2
+
+            rounded-xl
+
             bg-[#1F2937]
             hover:bg-[#374151]
-            px-4 py-2
-            rounded-xl
+
             text-sm
+
             transition-all
-            w-full sm:w-auto
           "
         >
           Open Diff
