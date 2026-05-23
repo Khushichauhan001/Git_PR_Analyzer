@@ -1,7 +1,12 @@
 import prData from "../data/prData"
 import PRCard from "../components/PRCard"
+import { useState } from "react"
+import AnalysisModal from "../components/AnalysisModal"
 
 const PullRequests = () => {
+
+  const [openModal, setOpenModal] = useState(false)
+
   return (
     <div className="max-w-7xl mx-auto">
 
@@ -19,15 +24,27 @@ const PullRequests = () => {
           Pull Requests
         </h1>
 
-        <button className="
-          bg-blue-600 hover:bg-blue-700
-          px-5 py-3
-          rounded-xl
-          transition-all
-          w-full sm:w-auto
-        ">
-          Analyze New PR
-        </button>
+     <button
+  onClick={() => setOpenModal(true)}
+
+  className="
+    bg-blue-600
+    hover:bg-blue-700
+
+    px-5 py-3
+
+    rounded-2xl
+
+    font-medium
+
+    transition-all
+  "
+>
+
+  Analyze New PR
+
+</button>
+
 
       </div>
 
@@ -41,6 +58,10 @@ const PullRequests = () => {
         ))}
       </div>
 
+<AnalysisModal
+  open={openModal}
+  setOpen={setOpenModal}
+/>
     </div>
   )
 }
