@@ -1,50 +1,154 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom"
-import PRDetails from "./pages/PRDetails"
-
-import MainLayout from "./layouts/MainLayout"
-
-import Dashboard from "./pages/Dashboard"
-import PullRequests from "./pages/PullRequests"
-import Vulnerabilities from "./pages/Vulnerabilities"
-import Analytics from "./pages/Analytics"
+import { useState } from "react";
+import axios from "axios";
 
 function App() {
+
+  const [text, setText] = useState("");
+
+  const [result, setResult] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState("");
+
+
+
+  const analyzePR = async () => {
+
+    if (!text.trim()) return;
+
+    try {
+
+      setLoading(true);
+
+      setError("");
+
+      setResult(null);
+
+      const response = await axios.post(
+        "http://127.0.0.1:8000/predict",
+        {
+          text: text
+        }
+      );
+
+      setResult(response.data);
+
+    } catch (err) {
+
+      setError("Something went wrong");
+
+      console.log(err);
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
+
+
+
   return (
-    <BrowserRouter>
-      <MainLayout>
-        <Routes>
-          <Route
-            path="/"
-            element={<Dashboard />}
-          />
 
-          <Route
-            path="/pull-requests"
-            element={<PullRequests />}
-          />
+    <div style={styles.container}>
 
-          <Route
-            path="/vulnerabilities"
-            element={<Vulnerabilities />}
-          />
+      <h1 style={styles.heading}>
+        GitHub PR Risk Analyzer
+      </h1>
 
-          <Route
-            path="/analytics"
-            element={<Analytics />}
-          />
+      <textarea
+        placeholder="Paste PR code changes here..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        style={styles.textarea}
+      />
 
-          <Route
-          path="/pull-requests/:id"
-          element={<PRDetails />}
-        />
-        </Routes>
-      </MainLayout>
-    </BrowserRouter>
-  )
+      <button
+        onClick={analyzePR}
+        style={styles.button}
+      >
+        {loading ? "Analyzing..." : "Analyze PR"}
+      </button>
+
+      {error && (
+        <p style={styles.error}>
+          {error}
+        </p>
+      )}
+
+      {result && (
+        <div style={styles.resultCard}>
+
+          <h2>
+            Prediction Result
+          </h2>
+
+          <p>
+            <strong>Risk Level:</strong>{" "}
+            {result.label}
+          </p>
+
+          <p>
+            <strong>Confidence:</strong>{" "}
+            {(result.confidence * 100).toFixed(2)}%
+          </p>
+
+        </div>
+      )}
+
+    </div>
+  );
 }
 
-export default App
+
+
+const styles = {
+
+  container: {
+    minHeight: "100vh",
+    backgroundColor: "#0f172a",
+    color: "white",
+    padding: "40px",
+    fontFamily: "Arial"
+  },
+
+  heading: {
+    fontSize: "40px",
+    marginBottom: "30px"
+  },
+
+  textarea: {
+    width: "100%",
+    height: "220px",
+    padding: "20px",
+    borderRadius: "12px",
+    border: "none",
+    fontSize: "16px",
+    marginBottom: "20px"
+  },
+
+  button: {
+    padding: "14px 30px",
+    fontSize: "18px",
+    borderRadius: "10px",
+    border: "none",
+    backgroundColor: "#2563eb",
+    color: "white",
+    cursor: "pointer"
+  },
+
+  resultCard: {
+    marginTop: "30px",
+    padding: "20px",
+    backgroundColor: "#1e293b",
+    borderRadius: "12px"
+  },
+
+  error: {
+    color: "red",
+    marginTop: "20px"
+  }
+};
+
+export default App;
