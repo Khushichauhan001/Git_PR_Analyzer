@@ -6,3 +6,5 @@ sentencepiece
 accelerate
 pydantic
 python-multipart
+python-dotenv
+requests
