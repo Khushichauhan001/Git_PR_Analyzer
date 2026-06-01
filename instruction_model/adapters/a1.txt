@@ -1,0 +1,16 @@
+Yaha save honge:
+
+LoRA adapter weights
+
+NOT full Phi-2 model.
+
+
+Why?
+
+QLoRA me:
+
+base model freeze hota hai
+sirf adapters train hote hain
+
+To output:
+ lightweight adapters hote hain.

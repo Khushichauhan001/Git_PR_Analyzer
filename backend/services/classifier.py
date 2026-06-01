@@ -5,7 +5,7 @@ MODEL_PATH = "./models/my_codebert_model"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 
-model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
+model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)      
 
 labels = {
     0: "low_risk",
