@@ -1,0 +1,19 @@
+{"instruction":"Analyze this pull request.","input":"Removed JWT authentication middleware from admin routes.","output":"This PR removes JWT authentication from admin APIs which may expose sensitive endpoints to unauthorized users."}
+
+{"instruction":"Analyze this pull request.","input":"Updated button styling and CSS colors.","output":"This PR contains frontend styling changes with minimal security impact."}
+
+{"instruction":"Analyze this pull request.","input":"Added raw SQL query without parameter validation.","output":"This PR introduces raw SQL queries without sanitization which may increase SQL injection risk."}
+
+{"instruction":"Analyze this pull request.","input":"Refactored logging utility functions.","output":"This PR mainly refactors logging utilities and appears low risk."}
+
+{"instruction":"Analyze this pull request.","input":"Removed role-based access control from payment APIs.","output":"This PR removes authorization checks from payment endpoints which may expose sensitive financial operations."}
+
+{"instruction":"Analyze this pull request.","input":"Updated README documentation.","output":"This PR modifies documentation only and has no direct security impact."}
+
+{"instruction":"Analyze this pull request.","input":"Disabled input validation in user registration API.","output":"This PR disables input validation which may allow malformed or malicious data submission."}
+
+{"instruction":"Analyze this pull request.","input":"Optimized frontend rendering performance.","output":"This PR focuses on frontend rendering optimizations and appears low risk."}
+
+{"instruction":"Analyze this pull request.","input":"Exposed internal admin endpoint publicly.","output":"This PR exposes internal administrative APIs publicly which may create unauthorized access risks."}
+
+{"instruction":"Analyze this pull request.","input":"Updated API response formatting.","output":"This PR modifies API response formatting with low security impact."}
