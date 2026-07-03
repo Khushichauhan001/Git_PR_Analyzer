@@ -55,4 +55,4 @@ with open(output_file, "w") as f:
     for item in examples:
         f.write(json.dumps(item) + "\n")
 
-print(f"Generated {len(examples)} examples."
+print(f"Generated {len(examples)} examples.")

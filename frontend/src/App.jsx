@@ -95,6 +95,11 @@ function App() {
             {(result.confidence * 100).toFixed(2)}%
           </p>
 
+          <p>
+            <strong>Explanation:</strong>{" "}
+            {result.explanation}
+          </p>
+
         </div>
       )}
 
@@ -129,6 +134,7 @@ const styles = {
     marginBottom: "20px"
   },
 
+
   button: {
     padding: "14px 30px",
     fontSize: "18px",
@@ -139,12 +145,14 @@ const styles = {
     cursor: "pointer"
   },
 
+ 
   resultCard: {
-    marginTop: "30px",
-    padding: "20px",
-    backgroundColor: "#1e293b",
-    borderRadius: "12px"
-  },
+  marginTop: "30px",
+  padding: "20px",
+  backgroundColor: "#1e293b",
+  borderRadius: "12px",
+  whiteSpace: "pre-wrap"
+},
 
   error: {
     color: "red",

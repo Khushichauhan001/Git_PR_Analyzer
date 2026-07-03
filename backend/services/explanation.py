@@ -18,6 +18,10 @@ model = PeftModel.from_pretrained(
     ADAPTER_PATH
 )
 
+print("\n========== MODEL ==========")
+print(model)
+print("===========================\n")
+
 def generate_explanation(pr_text):
 
     prompt = f"""
