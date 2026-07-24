@@ -1,4 +1,4 @@
-import { Search, Bell, ChevronDown, GitBranch } from "lucide-react"
+import {  Bell, ChevronDown, GitBranch } from "lucide-react"
 
 const Navbar = () => {
   return (
@@ -33,18 +33,7 @@ const Navbar = () => {
       >
 
         {/* LEFT SIDE */}
-        <div
-          className="
-            flex
-            flex-col
-            lg:flex-row
-
-            lg:items-center
-
-            gap-4
-            flex-1
-          "
-        >
+        <div className="flex-1">
 
           {/* Project Info */}
           <div className="min-w-fit">
@@ -60,7 +49,7 @@ const Navbar = () => {
           </div>
 
           {/* Search */}
-          <div
+          {/* <div
             className="
               flex items-center
               gap-3
@@ -99,7 +88,7 @@ const Navbar = () => {
               "
             />
 
-          </div>
+          </div> */}
 
         </div>
 
