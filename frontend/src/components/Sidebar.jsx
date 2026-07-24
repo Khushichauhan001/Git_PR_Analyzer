@@ -13,7 +13,7 @@ const Sidebar = () => {
       className="
         w-20 lg:w-64
         min-h-screen
-        bg-[#111827]
+    bg-[#111827]
         border-r border-gray-800
         p-3 lg:p-5
         flex flex-col
