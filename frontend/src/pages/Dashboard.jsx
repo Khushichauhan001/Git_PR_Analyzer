@@ -5,17 +5,22 @@ import WeeklyActivityChart from "../charts/WeeklyActivityChart"
 import AISuggestions from "../components/AISuggestions"
 import ActivityFeed from "../components/ActivityFeed"
 import TerminalLogs from "../components/TerminalLogs"
+import PRAnalyzer from "../components/PRAnalyzer"
 
 const Dashboard = () => {
   return (
     <div className="space-y-8">
 
       {/* Heading */}
+
       <div>
 
         <h1 className="text-3xl sm:text-4xl font-bold">
           PR Risk Dashboard
         </h1>
+
+         
+          <PRAnalyzer />
 
         <p className="text-gray-400 mt-2">
           Monitor pull request vulnerabilities and AI risk analysis
